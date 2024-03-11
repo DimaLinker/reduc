@@ -1,16 +1,26 @@
 const initialState = []
 
 function reducer(state, action){
-    if (action.type === 'ADD_NAME') {
-        return [...state, action.payload]
+    switch (action.type) {
+        case 'ADD_NAME':
+            return [...state, action.payload]
+        case 'DELETE_NAME':
+            return state.filter(name => name !== action.payload)
+        case 'RESET':
+            return []
+        default:
+            return state
     }
-    if (action.type === 'DELETE_NAME') {
-        return state.filter(name => name !== action.payload)
-    }
-    if (action.type === 'RESET') {
-        return []
-    }
-    return state
+    // if (action.type === 'ADD_NAME') {
+    //     return [...state, action.payload]
+    // }
+    // if (action.type === 'DELETE_NAME') {
+    //     return state.filter(name => name !== action.payload)
+    // }
+    // if (action.type === 'RESET') {
+    //     return []
+    // }
+    // return state
 }
 
 let newState = reducer(initialState, {type: 'ADD_NAME', payload: 'Hi das funktioniert'})
